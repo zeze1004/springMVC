@@ -8,14 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LogTestController {
-	private final Logger log = LoggerFactory.getLogger(getClass());
+	private final Logger log = LoggerFactory.getLogger(getClass()); // @Slf4j 선언 시 log 호출안해도 logging 가능
 
 	@RequestMapping("/log-test")
 	public String logTest() {
 		String name = "Spring";
 
 		System.out.println("name = " + name);
+
+		log.trace("trace log={}", name);
+		log.debug("debug log={}", name);
 		log.info("info log={}", name);
+		log.warn("warn log={}", name);
+		log.error("error log={}", name);
 
 		return "ok";
 	}
